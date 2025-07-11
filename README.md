@@ -246,3 +246,19 @@ kubectl run static-pod --image=nginx --dry-run=client -o yaml > /etc/kubernetes/
 - Master JSONPath for custom outputs
 - Remember to check all namespaces with `-A`
 - Use `kubectl explain` for resource specifications
+
+## Useful Links:
+> **NOTE**: _Must have a look before your CKA_
+
+Github
+- https://github.com/ascode-com/wiki/blob/main/certified-kubernetes-administrator/README.md
+- https://gist.github.com/Nurlan199206/d4cd11487f2ffd8ede01085dced3a430
+
+Videos
+- https://youtu.be/8VK9NJ3pObU
+
+Sample Questions for CKA:
+- https://www.itexams.com/exam/CKA
+- https://youtu.be/eGv6iPWQKyo?si=v1lE2QsxeD8LNWgB
+- https://www.youtube.com/watch?v=LkPOMceDTZY&list=PLYEK_dHOjwtNoS_SYcyntJ8hyhOI-Px8T
+- https://www.youtube.com/watch?v=rNgTxL5Iqxo&list=PLFAJ6I3pCvzouqwyaIGuu2tzmY_bz8et9
