@@ -85,6 +85,18 @@ kubectl drain node01 --ignore-daemonsets --force
 kubectl cordon node01
 kubectl uncordon node01
 ```
+### Upgrading kubeadm clusters
+```bash
+sudo apt update
+sudo apt-cache madison kubeadm
+kubectl drain <master-node-name> --ignore-daemonsets
+sudo apt-get install -y kubeadm=1.22.2-00 kubelet=1.22.2-00 kubectl=1.22.2-00
+kubeadm upgrade plan
+kubeadm upgrade apply v1.22.2
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+kubectl uncordon <master-node-name>
+```
 
 ## Cluster Management
 
@@ -121,7 +133,7 @@ kubectl auth can-i create pods --as dev-user
 kubectl create role developer --verb=create,get,list,delete --resource=pods
 kubectl create rolebinding dev-binding --role=developer --user=dev-user
 kubectl create clusterrole nodes-admin --verb=create,list,delete --resource=nodes
-kubectl create clusterrolebinding nodes-binding --clusterrole=nodes-admin --user=admin
+kubectl create clusterrolebinding nodes-binding --clusterrole=nodes-admin --serviceaccount=<namespace>:<name> --user=admin
 ```
 
 ### Service Accounts
