@@ -34,7 +34,7 @@ kubectl rollout undo deployment/nginx
 ```bash
 # Expose services
 kubectl expose pod redis --port=6379 --name redis-service
-kubectl expose deploy nginx --type=NodePort --port=80 --target-port=80
+kubectl expose deploy nginx --name=front-end-svc --type=NodePort --port=80 --target-port=80 --protocol=TCP
 kubectl create service clusterip redis --tcp=6379:6378
 kubectl create service nodeport nginx --tcp=80:80 --node-port=30080
 ```
