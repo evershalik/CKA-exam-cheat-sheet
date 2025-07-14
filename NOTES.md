@@ -7,4 +7,7 @@
 | **Flannel** | ✅ Yes             | ❌ **No**         |
 | **Calico**  | ✅ Yes             | ✅ **Yes**        |
 
+- Can You Have Two Default StorageClasses? ❌ No
+- Claims can use the volumeName field to explicitly bind to a specific PersistentVolume. You can also leave volumeName unset, indicating that you'd like Kubernetes to set up a new PersistentVolume that matches the claim.
+- 
 
