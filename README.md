@@ -10,6 +10,7 @@ A comprehensive kubectl command reference for the Certified Kubernetes Administr
 kubectl run nginx --image=nginx
 kubectl run redis --image=redis:alpine -l='tier=db'
 kubectl run webapp --image=kodekloud/webapp-color --env="APP_COLOR=green"
+kubectl run static-busybox --restart=Never --image=busybox --dry-run=client -o yaml --command -- sleep 1000 
 
 # Generate YAML
 kubectl run nginx --image=nginx --dry-run=client -o yaml
@@ -25,6 +26,7 @@ kubectl create deploy redis-deploy --image=redis --replicas=2 -n dev-ns
 # Manage deployments
 kubectl set image deployment/nginx nginx=nginx:1.15
 kubectl scale deployment nginx --replicas=5
+kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10  # hpa
 kubectl rollout status deployment/nginx
 kubectl rollout history deployment/nginx
 kubectl rollout undo deployment/nginx
@@ -121,6 +123,15 @@ kubectl get csr
 openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text -noout
 ```
 
+### Enable and Start cri-docker service
+```bash
+sudo systemctl enable cri-docker.service
+sudo systemctl enable cri-docker.socket
+sudo systemctl start cri-docker.service
+sudo systemctl start cri-docker.socket
+```
+
+
 ## Security & RBAC
 
 ### Authentication & Authorization
@@ -181,6 +192,7 @@ kubectl logs -p pod-name  # Previous instance
 kubectl exec -it pod-name -- /bin/bash
 kubectl describe pod pod-name
 ```
+
 
 ### Troubleshooting Commands
 ```bash
