@@ -8,6 +8,8 @@ A comprehensive kubectl command reference for the Certified Kubernetes Administr
 ```bash
 # Create and manage pods
 kubectl run nginx --image=nginx
+kubectl get po --show-labels
+kubectl get po --field-selector status.phase=Running -A
 kubectl run redis --image=redis:alpine -l='tier=db'
 kubectl run webapp --image=kodekloud/webapp-color --env="APP_COLOR=green"
 kubectl run static-busybox --restart=Never --image=busybox --dry-run=client -o yaml --command -- sleep 1000 
@@ -24,7 +26,7 @@ kubectl create deployment nginx --image=nginx --replicas=4
 kubectl create deploy redis-deploy --image=redis --replicas=2 -n dev-ns
 
 # Manage deployments
-kubectl set image deployment/nginx nginx=nginx:1.15
+kubectl set image deployment/nginx nginx=nginx:1.15 --record
 kubectl scale deployment nginx --replicas=5
 kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10  # hpa
 kubectl rollout status deployment/nginx
@@ -55,6 +57,7 @@ kubectl create ingress api --rule="/api=api-service:8080" --dry-run=client -o ya
 # ConfigMaps
 kubectl create configmap app-config --from-literal=APP_COLOR=blue
 kubectl describe cm app-config
+kubectl config view
 
 # Secrets
 kubectl create secret generic db-secret --from-literal=DB_HOST=mysql
@@ -179,6 +182,7 @@ kubectl describe pvc local-pvc
 kubectl top nodes
 kubectl top pods --containers=true
 kubectl top pods --sort-by=cpu
+kubectl cluster-info
 ```
 
 ### Logs & Debugging
